@@ -1,12 +1,18 @@
 import { defineNuxtConfig } from 'nuxt3'
 
 export default defineNuxtConfig({
-    // buildModules: ['@nuxtjs/tailwindcss'],
-    css: ['@/assets/css/tailwind.css'],
+    css: [
+      '@/assets/css/tailwind.css',
+      { src: '@/assets/stylus/main.styl', lang: 'stylus' }
+    ],
     build: {
       postcss: {
-        // add Postcss options
-        postcssOptions: require('./postcss.config.js'),
+          postcssOptions: {
+              plugins: {
+                  tailwindcss: {},
+                  autoprefixer: {},
+              }
+          }
       },
-    },
+  }
 })
