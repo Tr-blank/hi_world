@@ -3,17 +3,20 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write"
   },
   "devDependencies": {
-    "nuxt3": "latest",
     "@nuxtjs/tailwindcss": "^4.2.1",
     "autoprefixer": "^10.4.0",
+    "nuxt3": "latest",
     "postcss": "^8.3.11",
     "stylus": "^0.55.0",
     "stylus-loader": "^6.2.0",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.4.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

@@ -1,7 +1,5 @@
 <template>
-  <div class="main text-xl text-red text-test-red">
-    Hi World!!
-  </div>
+  <div class="main text-xl text-red text-test-red">Hi World!!</div>
 </template>
 
 <style lang="stylus" scoped>
