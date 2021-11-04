@@ -6,14 +6,13 @@ module.exports = {
       "./pages/**/*.vue",
       "./app.vue",
       "./plugins/**/*.{js,ts}",
-      "./nuxt.config.{js,ts}"
-    ]
+      "./nuxt.config.{js,ts}",
+    ],
   },
   theme: {
-    extend: {
-    }
+    extend: {},
   },
   variants: {
-    extend: {}
-  }
-}
+    extend: {},
+  },
+};
