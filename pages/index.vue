@@ -21,7 +21,7 @@
           v-model="loginForm.name"
           type="text"
           class="block bg-gray-200 py-2 px-4 mb-1 w-full rounded"
-          @keypress.enter="addThing"
+          @keypress.enter="setUserProfile"
         />
         <div v-show="isNameInputEmpty" class="text-sm text-red-500">
           請輸入你的名字

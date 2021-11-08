@@ -18,7 +18,7 @@
       <div class="pb-4">
         <div
           v-for="(thing, index) in thingList"
-          :key="`toDoThing${index}`"
+          :key="`toDoThing${thing}`"
           class="
             flex
             items-center
@@ -29,8 +29,13 @@
             pr-1
             py-2
             mb-4
+            text-left
           "
         >
+          <div class="flex items-center w-16">
+            <input :id="`thing${index}`" type="checkbox" class="thing__checkbox" />
+            <span class="thing__double-checkbox cursor-pointer" @click="checkThing(index)">完成</span>
+          </div>
           <span>{{ thing }}</span>
           <span
             @click="deleteThing(index)"
@@ -85,7 +90,6 @@ const hasUserName = computed(() => userName.value !== "");
 const logout = () => {
   localStorage.removeItem("userName");
   userName.value = "";
-  hasUserName.value = false;
   router.push({
     name: "index",
   });
@@ -93,15 +97,26 @@ const logout = () => {
 
 const newThing = ref("");
 const thingList = ref([]);
+const completeThingList = ref([]);
+
 const addThing = () => {
+  if (newThing.value === '') return
   thingList.value.push(newThing.value);
   localStorage.setItem("thingList", thingList.value.toString());
   newThing.value = "";
 };
+
 const deleteThing = (index) => {
   thingList.value.splice(index, 1);
   localStorage.setItem("thingList", thingList.value.toString());
 };
+
+const checkThing = (index) => {
+  completeThingList.value.push(thingList.value[index]);
+  localStorage.setItem("completeThingList", completeThingList.value.toString());
+  deleteThing(index)
+}
+
 </script>
 
 <script>
@@ -116,6 +131,8 @@ export default {
     }
     const thingListString = localStorage?.getItem("thingList") || "";
     this.thingList = thingListString.split(",");
+    const completeThingListString = localStorage?.getItem("completeThingList") || "";
+    this.completeThingList = completeThingListString.split(",");
     this.isLoading = false;
   },
 };
@@ -123,5 +140,13 @@ export default {
 
 <style lang="stylus" scoped>
 .main
-    border: 1px solid #ddd;
+  border: 1px solid #ddd;
+.thing
+  &__double-checkbox
+    @apply hidden;
+  &__checkbox:checked
+    @apply hidden;
+    + .thing__double-checkbox
+      @apply block;
+
 </style>
