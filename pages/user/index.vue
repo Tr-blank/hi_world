@@ -14,7 +14,8 @@
         rounded
       "
     >
-      <div class="pb-4">Hi {{ userName }}, 今天要做些甚麼呢?</div>
+      <div class="pb-4">{{ userName }}: ${{ wallet }}元</div>
+      <div class="pb-4">Hi, 今天要做些甚麼呢?</div>
       <div class="pb-4">
         <div
           v-for="(thing, index) in thingList"
@@ -95,6 +96,7 @@ const logout = () => {
   });
 };
 
+const wallet = ref(0)
 const newThing = ref("");
 const thingList = ref([]);
 const completeThingList = ref([]);
@@ -111,8 +113,31 @@ const deleteThing = (index) => {
   localStorage.setItem("thingList", thingList.value.toString());
 };
 
+const dailyTaskReward = () => {
+  const completeThingCount = completeThingList.value.length
+  let reward = 0
+  if(completeThingCount <= 10) {
+    reward += 10;
+    localStorage.setItem("wallet", wallet.value);
+  }
+  switch (completeThingCount) {
+    case 3:
+      reward += 10;
+      break;
+    case 6:
+      reward += 20;
+      break;
+    case 10:
+      reward += 30;
+      break;
+  }
+  wallet.value += reward;
+  localStorage.setItem("wallet", wallet.value);
+}
+
 const checkThing = (index) => {
   completeThingList.value.push(thingList.value[index]);
+  dailyTaskReward();
   localStorage.setItem("completeThingList", completeThingList.value.toString());
   deleteThing(index)
 }
@@ -129,10 +154,12 @@ export default {
         name: "index",
       });
     }
+    const walletString = localStorage?.getItem("wallet") || '0';
+    this.wallet = parseInt(walletString);
     const thingListString = localStorage?.getItem("thingList") || "";
-    this.thingList = thingListString.split(",");
+    this.thingList = thingListString ? thingListString.split(",") : [];
     const completeThingListString = localStorage?.getItem("completeThingList") || "";
-    this.completeThingList = completeThingListString.split(",");
+    this.completeThingList = completeThingListString ? completeThingListString.split(",") : [];
     this.isLoading = false;
   },
 };
