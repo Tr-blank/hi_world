@@ -9,14 +9,18 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "autoprefixer": "^10.4.0",
-    "nuxt3": "latest",
+    "eslint": "^8.2.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-vue": "^8.0.3",
     "postcss": "^8.3.11",
     "stylus": "^0.55.0",
     "stylus-loader": "^6.2.0",
-    "tailwindcss": "^2.2.19",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.4.1"
+    "tailwindcss": "^2.2.19"
   },
-  "dependencies": {}
+  "dependencies": {
+    "nuxt3": "latest"
+  }
 }

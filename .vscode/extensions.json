@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "octref.vetur",
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+    "teamchilla.blueprint",
+    "bradlc.vscode-tailwindcss",
+    "stylelint.vscode-stylelint"
+  ]
+}
