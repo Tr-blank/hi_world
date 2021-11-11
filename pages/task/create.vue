@@ -13,7 +13,6 @@
             挑戰名稱
           </label>
           <input
-            v-model="newThing"
             type="text"
             class="block bg-gray-200 py-2 px-4 w-full rounded"
           >
@@ -48,12 +47,10 @@
               多日
             </label>
             <input
-              v-model="newThing"
               type="date"
               class="block bg-gray-200 py-2 px-4 w-full rounded"
             >
             <input
-              v-model="newThing"
               type="date"
               class="block bg-gray-200 py-2 px-4 w-full rounded"
             >
@@ -64,7 +61,6 @@
             完成獎金
           </label>
           <input
-            v-model="newThing"
             type="text"
             class="block bg-gray-200 py-2 px-4 w-full rounded"
           >
@@ -93,6 +89,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { fetchCommonData } from '~/api/ptx.js'
 
 const isLoading = ref(true)
 
@@ -101,8 +98,10 @@ const isLoading = ref(true)
 <script>
 export default {
   name: 'TaskList',
-  mounted() {
+  async mounted() {
     this.isLoading = false
+    const data =  await fetchCommonData()
+    console.log(data)
   }
 }
 </script>

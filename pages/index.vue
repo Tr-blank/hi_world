@@ -36,7 +36,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -60,7 +60,8 @@ const setUserProfile = () => {
 }
 </script>
 
-<script lang="ts">
+<script>
+
 export default {
   name: 'HomeIndex',
   mounted() {
@@ -70,8 +71,8 @@ export default {
       })
     }
     this.isLoading = false
-  }
-}
+  },
+}  
 </script>
 
 <style lang="stylus" scoped>
