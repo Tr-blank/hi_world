@@ -1,4 +1,4 @@
-import jsSHA from "jssha"
+import jsSHA from 'jssha'
 
 function getAuthorizationHeader() {
   //  填入自己 ID、KEY 開始
@@ -17,8 +17,13 @@ function getAuthorizationHeader() {
 
 export const fetchCommonData = () => {
 
-  return $fetch('https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?&$format=JSON', {
+  return $fetch('https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot', {
     headers: getAuthorizationHeader(),
-    method: 'GET'
+    method: 'GET',
+    params: {
+      '$format': 'JSON',
+      '$select': 'Name'
+      // '$filter': 'contains(class1,\'%E6%BA%AB%E6%B3%89\')%20or%20contains(class2, \'%E6%BA%AB%E6%B3%89\')%20or%20contains(class3, \'%E6%BA%AB%E6%B3%89\')'
+    }
   })
 }
