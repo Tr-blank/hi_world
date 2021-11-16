@@ -4,13 +4,13 @@
   </main>
 </template>
 
-<script setup> 
+<script setup>
 </script>
 
 <script>
 export default {
-  name: "TaskDetail"
-};
+  name: 'TaskDetail'
+}
 </script>
 
 <style lang="stylus" scoped>

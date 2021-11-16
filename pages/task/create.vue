@@ -89,7 +89,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { fetchCommonData } from '~/api/ptx.js'
+import { getTourismCity, getTourism } from '~~/api/tdx.js'
 
 const isLoading = ref(true)
 
@@ -100,8 +100,10 @@ export default {
   name: 'TaskList',
   async mounted() {
     this.isLoading = false
-    const data =  await fetchCommonData()
+    const data =  await getTourismCity()
     console.log(data)
+    const tourism =  await getTourism({ city: 'NewTaipei' })
+    console.log(tourism)
   }
 }
 </script>
