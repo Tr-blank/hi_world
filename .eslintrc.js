@@ -10,12 +10,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:vue/vue3-recommended'
   ],
-  // parserOptions: {
-  //   ecmaVersion: 13,
-  //   parser: '@typescript-eslint/parser',
-  //   sourceType: 'module'
-  // },
-  // plugins: ['@typescript-eslint'],
+  parserOptions: {
+    ecmaVersion: 13,
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module'
+  },
+  plugins: ['@typescript-eslint'],
   rules: {
     'no-console': isDev ? 0 : 1,
     'no-trailing-spaces': 2,

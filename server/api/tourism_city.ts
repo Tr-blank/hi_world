@@ -23,7 +23,7 @@ export default async () => {
       { label: '臺東縣', value: 'TaitungCounty' },
       { label: '金門縣', value: 'KinmenCounty' },
       { label: '澎湖縣', value: 'PenghuCounty' },
-      { label: '連江縣', value: 'LienchiangCounty' },
+      { label: '連江縣', value: 'LienchiangCounty' }
     ]
   }
 }

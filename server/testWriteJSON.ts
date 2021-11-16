@@ -58,7 +58,7 @@ export default async () => {
     { label: '苗栗縣', value: 'MiaoliCounty' },
     { label: '彰化縣', value: 'ChanghuaCounty' },
     { label: '南投縣', value: 'NantouCounty' },
-    { label: '雲林縣', value: 'YunlinCounty' },
+    { label: '雲林縣', value: 'YunlinCounty' }, 
     { label: '嘉義縣', value: 'ChiayiCounty' },
     { label: '嘉義市', value: 'Chiayi' },
     { label: '屏東縣', value: 'PingtungCounty' },
