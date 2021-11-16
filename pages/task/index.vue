@@ -21,7 +21,7 @@ const isLoading = ref(true)
 export default {
   name: 'TaskList',
   mounted() {this.isLoading = false
-  },
+  }
 }
 </script>
 
