@@ -61,7 +61,8 @@ export default async (req) => {
       headers: getAuthorizationHeader(),
       method: 'GET',
       params: {
-        '$format': 'JSON'
+        '$format': 'JSON',
+        '$top': 30
         // '$select': 'Name'
       }
     })
