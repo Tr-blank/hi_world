@@ -1,10 +1,9 @@
 <template>
   <main class="">
-    <div v-show="isLoading">
+    <!-- <div v-show="isLoading">
       loading...
-    </div>
+    </div> -->
     <div
-      v-show="!isLoading"
       class="flex"
     >
       <form class="py-2 px-4 w-1/3 bg-gray-50">
@@ -144,17 +143,14 @@
         </div>
       </form>
       <div v-show="createTaskForm.type === 'tourism'">
-        景點清單
+        <ListTourism />
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { getTourismCity, getTourism } from '~~/api/tdx.js'
-
-const isLoading = ref(true)
+import { reactive } from 'vue'
 const createTaskForm = reactive({
   name: '',
   periodType: 'byTime',
@@ -175,15 +171,20 @@ const createTask = () => {
 </script>
 
 <script>
+import ListTourism from '@/components/List/ListTourism'
+
 export default {
   name: 'TaskList',
-  async mounted() {
-    this.isLoading = false
-    const data =  await getTourismCity()
-    console.log(data)
-    const tourism =  await getTourism({ city: 'NewTaipei' })
-    console.log(tourism)
+  components: {
+    ListTourism
   }
+  // async mounted() {
+  //   this.isLoading = false
+  //   const data =  await getTourismCity()
+  //   console.log(data)
+  //   const tourism =  await getTourism({ city: 'NewTaipei' })
+  //   console.log(tourism)
+  // }
 }
 </script>
 
