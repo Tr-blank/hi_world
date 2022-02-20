@@ -5,3 +5,8 @@ export const getCookingMethods = () => {
   })
 }
 
+export const getUserCookingData = () => {
+  return $fetch('http://localhost:3000/api/user_cooking', {
+    method: 'get'
+  })
+}
