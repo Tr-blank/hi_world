@@ -3,9 +3,7 @@
     <!-- <div v-show="isLoading">
       loading...
     </div> -->
-    <div
-      class="flex"
-    >
+    <div class="flex">
       <form class="py-2 px-4 w-1/3 bg-gray-50">
         <h1 class="text-xl text-center py-4">
           建立新挑戰
@@ -18,8 +16,7 @@
             <input
               v-model="createTaskForm.name"
               type="text"
-              class="block bg-gray-200 py-2 px-4 rounded w-full"
-            >
+              class="block bg-gray-200 py-2 px-4 rounded w-full">
           </div>
         </div>
         <div class="flex py-2 items-center">
@@ -29,21 +26,18 @@
           <div class="flex w-3/5">
             <label
               for="data"
-              class="block"
-            >
+              class="block">
               <input
                 id="data"
                 v-model="createTaskForm.periodType"
                 type="radio"
                 name="periodType"
-                value="byTime"
-              >
+                value="byTime">
               小時
             </label>
             <label
               for="period"
-              class="block"
-            >
+              class="block">
               <input
                 id="period"
                 v-model="createTaskForm.periodType"
@@ -61,42 +55,35 @@
           </div>
           <div
             v-show="createTaskForm.periodType === 'byTime'"
-            class="flex flex-wrap w-3/5"
-          >
+            class="flex flex-wrap w-3/5">
             <input
               v-model="createTaskForm.timeStart"
               type="time"
-              class="block bg-gray-200 py-2 px-4 w-full rounded"
-            >
+              class="block bg-gray-200 py-2 px-4 w-full rounded">
             <template v-if="createTaskForm.hasEndTime">
               <span>~</span>
               <input
                 v-model="createTaskForm.timeEnd"
                 type="time"
-                class="block bg-gray-200 py-2 px-4 w-full rounded"
-              >
+                class="block bg-gray-200 py-2 px-4 w-full rounded">
             </template>
             <label class="block w-full"><input
               v-model="createTaskForm.hasEndTime"
-              type="checkbox"
-            />有結束時間</label>
+              type="checkbox"/>有結束時間</label>
           </div>
           <div
             v-show="createTaskForm.periodType === 'byDay'"
-            class="flex flex-wrap w-3/5"
-          >
+            class="flex flex-wrap w-3/5">
             <input
               v-model="createTaskForm.dateStart"
               type="date"
-              class="block bg-gray-200 py-2 px-4 w-full rounded"
-            >
+              class="block bg-gray-200 py-2 px-4 w-full rounded">
             <template v-if="createTaskForm.hasEndDay">
               <span>~</span>
               <input
                 v-model="createTaskForm.dateEnd"
                 type="date"
-                class="block bg-gray-200 py-2 px-4 w-full rounded"
-              >
+                class="block bg-gray-200 py-2 px-4 w-full rounded">
             </template>
             <label class="block w-full"><input
               v-model="createTaskForm.hasEndDay"
@@ -112,8 +99,7 @@
             <input
               v-model="createTaskForm.reward"
               type="number"
-              class="block bg-gray-200 py-2 px-4 w-full rounded"
-            >
+              class="block bg-gray-200 py-2 px-4 w-full rounded">
           </div>
         </div>
         <div class="flex py-2 items-center">
@@ -124,8 +110,7 @@
             <select
               v-model="createTaskForm.type"
               name="taskType"
-              class="block bg-gray-200 py-2 px-4 w-full rounded"
-            >
+              class="block bg-gray-200 py-2 px-4 w-full rounded">
               <option value="tourism">
                 觀光景點
               </option>
@@ -137,8 +122,7 @@
         </div>
         <div
           class="block bg-gray-800 text-white px-4 py-2 rounded cursor-pointer"
-          @click="createTask"
-        >
+          @click="createTask">
           建立
         </div>
       </form>

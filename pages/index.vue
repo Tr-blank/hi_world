@@ -5,8 +5,7 @@
     </div>
     <div
       v-show="!isLoading"
-      class=" login max-w-md w-full border border-gray-200 bg-white px-6 py-10 rounded"
-    >
+      class="login max-w-md w-full border border-gray-200 bg-white px-6 py-10 rounded">
       <form class="text-center">
         <label
           for="name"
@@ -74,8 +73,3 @@ export default {
   },
 }  
 </script>
-
-<style lang="stylus" scoped>
-.main
-    border: 1px solid #ddd;
-</style>
