@@ -1,0 +1,54 @@
+{
+  // make sure vetur is enabled
+  "vetur.experimental.templateInterpolationService": false,
+  "vetur.format.enable": false,
+  "vetur.validation.template": false,
+  "vetur.validation.style": false,
+  // "vetur.format.defaultFormatter.html": "js-beautify-html",
+  // "vetur.format.defaultFormatterOptions": {
+  //   "wrap_attributes": "force-expand-multiline",
+  //   "prettier": {
+  //     "semi": false,
+  //     "singleQuote": true
+  //   },
+  //   "js-beautify-html": {
+  //     "wrap_line_length": 120,
+  //     "wrap_attributes": "force-expand-multiline"
+  //   }
+  // },
+  // style lint
+  "css.validate": false,
+  "scss.validate": false,
+  // eslint
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": [
+    "javascript",
+    "vue",
+    "typescript"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // code spell checking
+  "cSpell.ignorePaths": [
+    "**/package-lock.json",
+    "**/node_modules/**",
+    "**/.git/**",
+    ".vscode"
+  ],
+  "cSpell.words": [
+    "jssha",
+    "mixins",
+    "vuex"
+  ],
+  // blueprint
+  "blueprint.templatesPath": [
+    "./.vscode/blueprint"
+  ],
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.displayLanguage": "zh-TW",
+  "vue-i18n.i18nPaths": "src/locales"
+}
