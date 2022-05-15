@@ -1,9 +1,10 @@
-import { defineNuxtConfig } from 'nuxt3'
+import { defineNuxtConfig } from 'nuxt'
 
+// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  css: [
-    '@/assets/css/tailwind.css',
-    { src: '@/assets/stylus/main.styl', lang: 'stylus' }
+css: [
+    '@/assets/css/tailwind.css'
+    // '@/assets/stylus/main.styl'
   ],
   // modules: ['@nuxtjs/axios',{ proxyHeaders:false }],
   build: {

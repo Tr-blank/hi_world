@@ -1,13 +1,11 @@
 <template>
-  <!-- <AppHeader /> -->
   <main class="flex items-center justify-center bg-gray-50 w-screen h-screen">
     <div v-show="isLoading">
       loading...
     </div>
     <div
       v-show="!isLoading && hasUserName"
-      class=" user-page max-w-xl w-full border border-gray-200 bg-white px-6 py-10 rounded"
-    >
+      class="user-page max-w-xl w-full border border-gray-200 bg-white px-6 py-10 rounded">
       <div class="flex justify-between">
         <div class="pb-4">
           {{ userName }}: ${{ wallet }}元
@@ -157,15 +155,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus" scoped>
-.main
-  border: 1px solid #ddd;
-.thing
-  &__double-checkbox
-    @apply hidden;
-  &__checkbox:checked
-    @apply hidden;
-    + .thing__double-checkbox
-      @apply block;
-</style>
