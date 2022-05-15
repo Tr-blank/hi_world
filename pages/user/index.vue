@@ -1,7 +1,7 @@
 <template>
   <main class="flex items-center justify-center bg-gray-50 w-screen h-screen">
     <div v-show="isLoading">
-      loading...
+      loading......
     </div>
     <div
       v-show="!isLoading && hasUserName"
