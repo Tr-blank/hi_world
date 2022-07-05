@@ -1,8 +1,9 @@
 <template>
-  <main class="flex items-center justify-center bg-gray-50 w-screen h-screen">
+  <main class="flex items-center justify-center flex-col bg-gray-50 w-screen h-screen">
     <div v-show="isLoading">
       loading...
     </div>
+    <ChallengeList v-show="!isLoading && hasUserName" />
     <div
       v-show="!isLoading && hasUserName"
       class="user-page max-w-xl w-full border border-gray-200 bg-white px-6 py-10 rounded">
@@ -128,13 +129,13 @@ const checkThing = (index) => {
 </script>
 
 <script>
-// import AppHeader from "@/components/AppHeader";
+import ChallengeList from "@/components/Challenge/List";
 
 export default {
   name: 'HomeIndex',
-  // components: {
-  //   AppHeader
-  // },
+  components: {
+    ChallengeList
+  },
   mounted() {
     this.userName = localStorage?.getItem('userName') || ''
     if (this.userName === '') {
