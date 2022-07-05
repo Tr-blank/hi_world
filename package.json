@@ -18,6 +18,7 @@
     "tailwindcss": "^2.2.19"
   },
   "dependencies": {
+    "firebase": "^9.8.4",
     "jssha": "^3.2.0"
   }
 }
