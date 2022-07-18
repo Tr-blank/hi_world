@@ -3,7 +3,7 @@
     <div v-show="isLoading">
       loading...
     </div>
-    <ChallengeList v-show="!isLoading && hasUserName" />
+    <ChallengeWindow v-show="!isLoading && hasUserName" />
     <div
       v-show="!isLoading && hasUserName"
       class="user-page max-w-xl w-full border border-gray-200 bg-white px-6 py-10 rounded">
@@ -129,12 +129,12 @@ const checkThing = (index) => {
 </script>
 
 <script>
-import ChallengeList from "@/components/Challenge/List";
+import ChallengeWindow from "@/components/Challenge/Window"
 
 export default {
   name: 'HomeIndex',
   components: {
-    ChallengeList
+    ChallengeWindow
   },
   mounted() {
     this.userName = localStorage?.getItem('userName') || ''
