@@ -13,18 +13,29 @@ import {
 } from "firebase/firestore"
 import { firestoreDB } from "./firebase"
 
-export const queryByCollection = async (col: string) => {
+export const queryByCollection = async (collectionName: string) => {
   // @ts-ignore
-  const colRef = collection(firestoreDB, col)
+  const colRef = collection(firestoreDB, collectionName)
   const snapshot = await getDocs(colRef)
   const docs = Array.from(snapshot.docs).map((doc) => {
-      return {
+    return {
       ...doc.data(),
       id: doc.id,
-      }
+    }
   })
-
   return docs
+}
+
+export const add = async (collectionName: string, document: Object) => {
+  // @ts-ignore
+  const colRef = collection(firestoreDB, collectionName)
+  const docRef = await addDoc(colRef, document)
+  return docRef
+}
+
+export const del = async (collectionName: string, id) => {
+  const docRef = doc(firestoreDB, collectionName, id)
+  return await deleteDoc(docRef)
 }
 
 // export const update = async (col: string, document: Object) => {
@@ -35,23 +46,6 @@ export const queryByCollection = async (col: string) => {
 //   await setDoc(doc(collection(firestoreDB, col)), document, { merge: true });
 //   };
 
-
-
 export const set = async (col: string, document: Object) => {
-await setDoc(doc(collection(firestoreDB, col)), document, { merge: true });
-};
-
-
-
-
-export const add = async (col: string, document: Object) => {
-// @ts-ignore
-const colRef = collection(firestoreDB, col)
-const docRef = await addDoc(colRef, document)
-return docRef
+await setDoc(doc(collection(firestoreDB, col)), document, { merge: true })
 }
-
-export const del = async (col, id) => {
-const docRef = doc(firestoreDB, col, id);
-return await deleteDoc(docRef);
-};

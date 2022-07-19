@@ -10,3 +10,9 @@ export const addChallenge = (body) => {
     body
   })
 }
+
+export const delChallenge = (id) => {
+  return $fetch(`http://localhost:3000/api/challenge/delete?id=${id}`, {
+    method: 'get'
+  })
+}

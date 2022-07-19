@@ -17,20 +17,25 @@
     </div>
     <div v-show="currentChallengeId" class="p-6 border-l border-gray-200 w-full">
       <div>挑戰內容</div>
-      <ChallengeDetail :form="currentChallenge" @save-form-data="saveChallengeData" />
+      <ChallengeDetail
+        :is-create-form="isCreateChallenge"
+        :form="currentChallenge"
+        @save-challenge="saveChallengeData"
+        @delete-challenge="deleteChallenge"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref, reactive } from 'vue'
-  import { getChallengeList, addChallenge } from '@/api/challenge'
+  import { ref, computed } from 'vue'
+  import { getChallengeList, addChallenge, delChallenge } from '@/api/challenge'
   import ChallengeList from '@/components/Challenge/List.vue'
   import ChallengeDetail from '@/components/Challenge/Detail.vue'
   const currentChallengeId = ref(null)
   const currentChallenge = ref({})
   const challenges = ref([])
-  
+  const isCreateChallenge = computed(() => currentChallengeId.value === 'newChallenge')
   const createChallengeForm = () => {
     currentChallengeId.value = 'newChallenge'
     currentChallenge.value = {
@@ -40,11 +45,20 @@
   }
   const saveChallengeData = async (data) => {
     try {
-      if (currentChallengeId.value === 'newChallenge') {
+      if (isCreateChallenge.value) {
         await addChallenge(data)
       } else {
         console.log('update Challenge', data)
       }
+    } catch (error) {
+      console.debug(error)
+    } finally {
+      fetchChallengeList()
+    }
+  }
+  const deleteChallenge = async (id) => {
+    try {
+      await delChallenge(id)
     } catch (error) {
       console.debug(error)
     } finally {
