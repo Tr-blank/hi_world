@@ -6,7 +6,7 @@
 
       </select>
     </form>
-    <button class="border px-4 py-1 rounded mr-4" :disabled="isOriginalFormData" @click="updateChallenge">儲存</button>
+    <button class="border px-4 py-1 rounded mr-4" :disabled="isOriginalFormData" @click="saveFormData">儲存</button>
     <button class="border px-4 py-1 rounded">刪除</button>
   </div>
 </template>
@@ -16,11 +16,12 @@
   const props = defineProps({
     form: Object
   })
+  const emit = defineEmits(['save-form-data'])
   const { form } = toRefs(props)
   let formData = ref({})
   const isOriginalFormData = computed(() => JSON.stringify(formData.value) === JSON.stringify(form.value))
-  const updateChallenge = () => {
-    console.log('updateChallenge', formData.value)
+  const saveFormData = () => {
+    emit('save-form-data', formData.value)
   }
   watch(form, (form) => {
     formData.value = JSON.parse(JSON.stringify(form))

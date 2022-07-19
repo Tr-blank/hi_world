@@ -3,3 +3,10 @@ export const getChallengeList = () => {
     method: 'get'
   })
 }
+
+export const addChallenge = (body) => {
+  return $fetch('http://localhost:3000/api/challenge/add', {
+    method: 'post',
+    body
+  })
+}
