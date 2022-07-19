@@ -16,7 +16,10 @@
       </div>
     </div>
     <div v-show="currentChallengeId" class="p-6 border-l border-gray-200 w-full">
-      <div>挑戰內容</div>
+      <div class="flex justify-between">
+        <span>挑戰內容</span>
+        <span class="cursor-pointer inline-block pl-4" @click="closeChallengeDetail">X</span>
+      </div>
       <ChallengeDetail
         :is-create-form="isCreateChallenge"
         :form="currentChallenge"
@@ -46,7 +49,8 @@
   const saveChallengeData = async (data) => {
     try {
       if (isCreateChallenge.value) {
-        await addChallenge(data)
+        const { data: { id } } = await addChallenge(data)
+        currentChallengeId.value = id
       } else {
         console.log('update Challenge', data)
       }
@@ -63,7 +67,12 @@
       console.debug(error)
     } finally {
       fetchChallengeList()
+      closeChallengeDetail()
     }
+  }
+  const closeChallengeDetail = () => {
+    currentChallengeId.value = ''
+    currentChallenge.value = {}
   }
   const fetchChallengeList = async () => {
     try {
