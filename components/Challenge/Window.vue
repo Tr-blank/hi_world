@@ -1,5 +1,5 @@
 <template>
-  <div class="flex max-w-xl w-full border border-gray-200 bg-white">
+  <div class="flex w-full border border-gray-200 bg-white">
     <div class="p-6 w-full">
       <div class="flex justify-between pb-1 items-center">
         <span>挑戰清單</span>
