@@ -1,11 +1,12 @@
-import { useQuery } from 'h3'
-import { queryByCollection } from "../../lib/firestore";
+import { useQuery, useBody } from 'h3'
+import { set } from "../../lib/firestore"
 
 export default defineEventHandler (async (event) => {
   try {
-    const query = useQuery(event.req)
-    const docs = await queryByCollection('challenge')
-    return { status: 200, data: docs}
+    const { id } = useQuery(event.req)
+    const body = await useBody(event.req)
+    await set('challenge', id, body)
+    return { status: 200 }
   } catch (error) {
     return { status: 400, message: error.message, error }
   }

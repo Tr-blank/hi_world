@@ -11,6 +11,13 @@ export const addChallenge = (body) => {
   })
 }
 
+export const updateChallenge = (id, body) => {
+  return $fetch(`http://localhost:3000/api/challenge/update?id=${id}`, {
+    method: 'post',
+    body
+  })
+}
+
 export const delChallenge = (id) => {
   return $fetch(`http://localhost:3000/api/challenge/delete?id=${id}`, {
     method: 'get'

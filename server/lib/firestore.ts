@@ -1,22 +1,23 @@
 import {
   collection,
   getDocs,
-  // getDoc,
   addDoc,
   deleteDoc,
   doc,
-  // query,
-  // where,
   setDoc,
-  // collectionGroup,
-  // Timestamp,
+  Timestamp,
+  query,
+  orderBy
+  // limit
+  // where,
 } from "firebase/firestore"
 import { firestoreDB } from "./firebase"
 
 export const queryByCollection = async (collectionName: string) => {
   // @ts-ignore
-  const colRef = collection(firestoreDB, collectionName)
-  const snapshot = await getDocs(colRef)
+  const collectionRef = collection(firestoreDB, collectionName)
+  const q = query(collectionRef, orderBy("updateDate"));
+  const snapshot = await getDocs(q)
   const docs = Array.from(snapshot.docs).map((doc) => {
     return {
       ...doc.data(),
@@ -28,24 +29,18 @@ export const queryByCollection = async (collectionName: string) => {
 
 export const add = async (collectionName: string, document: Object) => {
   // @ts-ignore
-  const colRef = collection(firestoreDB, collectionName)
-  const docRef = await addDoc(colRef, document)
+  const collectionRef = collection(firestoreDB, collectionName)
+  const docData = { ...document, createDate: Timestamp.fromDate(new Date()) }
+  const docRef = await addDoc(collectionRef, docData)
   return docRef
+}
+
+export const set = async (collectionName: string, id, document: Object) => {
+  const docData = { ...document, updateDate: Timestamp.fromDate(new Date()) }
+  await setDoc(doc(collection(firestoreDB, collectionName), id), docData, { merge: true })
 }
 
 export const del = async (collectionName: string, id) => {
   const docRef = doc(firestoreDB, collectionName, id)
   return await deleteDoc(docRef)
-}
-
-// export const update = async (col: string, document: Object) => {
-
-//   .collection('fruit').doc('apple').set({})
-  
-
-//   await setDoc(doc(collection(firestoreDB, col)), document, { merge: true });
-//   };
-
-export const set = async (col: string, document: Object) => {
-await setDoc(doc(collection(firestoreDB, col)), document, { merge: true })
 }

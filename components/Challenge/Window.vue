@@ -32,7 +32,7 @@
 
 <script setup>
   import { ref, computed } from 'vue'
-  import { getChallengeList, addChallenge, delChallenge } from '@/api/challenge'
+  import { getChallengeList, addChallenge, delChallenge, updateChallenge } from '@/api/challenge'
   import ChallengeList from '@/components/Challenge/List.vue'
   import ChallengeDetail from '@/components/Challenge/Detail.vue'
   const currentChallengeId = ref(null)
@@ -52,7 +52,7 @@
         const { data: { id } } = await addChallenge(data)
         currentChallengeId.value = id
       } else {
-        console.log('update Challenge', data)
+        await updateChallenge(currentChallengeId.value, data)
       }
     } catch (error) {
       console.debug(error)
