@@ -20,14 +20,7 @@
       </nav>
       <footer class="p-4">footer</footer>
     </aside>
-    <div class="w-full">
-      <header class="p-4">
-        <h1>{{ currentLink.name }}</h1>
-      </header>
-      <div class="p-4">
-        <slot />
-      </div>
-    </div>
+    <slot />
   </main>
 </template>
 
@@ -37,12 +30,17 @@ const currentLink = computed(() => allLink.find((link) => link.path === route.pa
 const isCurrentLink = (path) => route.path === path
 const asideLinks = ref([
   {
+    path: '/backstage',
+    name: '儀錶板',
+    key: 'backstage'
+  },
+  {
     key: 'challenge',
-    path: '/backstage/challenge',
+    path: '/backstage/challenge/list',
     name: '挑戰',
     subLink: [
       {
-        path: '/backstage/challenge',
+        path: '/backstage/challenge/list',
         name: '挑戰清單',
         key: 'challengeList'
       },
@@ -63,7 +61,7 @@ const allLink = asideLinks.value.reduce((previousValue, currentValue) => {
   return [
     ...previousValue,
     ...[currentValue],
-    ...currentValue.subLink
+    ...currentValue.subLink ? [currentValue.subLink] : []
   ]
 }, [])
 </script>
