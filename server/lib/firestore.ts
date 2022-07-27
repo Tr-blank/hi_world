@@ -16,8 +16,8 @@ import { firestoreDB } from "./firebase"
 export const queryByCollection = async (collectionName: string) => {
   // @ts-ignore
   const collectionRef = collection(firestoreDB, collectionName)
-  const q = query(collectionRef, orderBy("updateDate"));
-  const snapshot = await getDocs(q)
+  // const q = query(collectionRef, orderBy("updateDate"))
+  let snapshot = await getDocs(collectionRef)
   const docs = Array.from(snapshot.docs).map((doc) => {
     return {
       ...doc.data(),
