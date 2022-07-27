@@ -9,7 +9,6 @@
 import AppHeader from "@/components/AppHeader";
 
 export default {
-  layout: "custom",
   components: {
     AppHeader
   }
