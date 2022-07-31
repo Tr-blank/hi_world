@@ -41,7 +41,7 @@ const asideLinks = ref([
     subLink: [
       {
         path: '/backstage/challenge/list',
-        name: '挑戰清單',
+        name: '官方挑戰',
         key: 'challengeList'
       },
       {
