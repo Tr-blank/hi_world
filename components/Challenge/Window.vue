@@ -43,7 +43,11 @@
     currentChallengeId.value = 'newChallenge'
     currentChallenge.value = {
       title: '',
-      type: ''
+      description: '',
+      isPublic: '0',
+      tags: '非官方',
+      model: '',
+      remark: ''
     }
   }
   const saveChallengeData = async (data) => {

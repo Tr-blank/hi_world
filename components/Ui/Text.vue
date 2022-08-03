@@ -1,7 +1,7 @@
 <template>
   <label :for="label" class="block">
     <span class="block">{{ title }}</span>
-    <input :id="label" type="text" v-model="textValue"  class="block px-4 py-1 border border-gray-500 rounded">
+    <input :id="label" type="text" v-model="textValue" class="block px-4 py-1 border border-gray-500 rounded">
   </label>
 
 </template>
