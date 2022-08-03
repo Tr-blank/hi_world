@@ -1,20 +1,5 @@
 <template>
   <div class="flex w-full border border-gray-200 bg-white">
-    <div class="p-6 w-full">
-      <div class="flex justify-between pb-1 items-center">
-        <span>挑戰清單</span>
-      </div>
-      <ChallengeList
-        :challenges="challenges"
-        :current-challenge-id="currentChallengeId"
-        @click="updateCurrentChallenge"
-        class="border-b"
-      />
-      <div @click="createChallengeForm" class="border-b py-1 cursor-pointer flex justify-between">
-        <span>新增</span>
-        <div v-show="currentChallengeId === 'newChallenge'">></div>
-      </div>
-    </div>
     <div v-show="currentChallengeId" class="p-6 border-l border-gray-200 w-full">
       <div class="flex justify-between">
         <span>挑戰內容</span>
@@ -26,6 +11,21 @@
         @save-challenge="saveChallengeData"
         @delete-challenge="deleteChallenge"
       />
+    </div>
+    <div class="p-6 w-full">
+      <div class="flex justify-between pb-1 items-center">
+        <span>挑戰清單</span>
+      </div>
+      <ChallengeList
+        :challenges="challenges"
+        :current-challenge-id="currentChallengeId"
+        @click="updateCurrentChallenge"
+        class="border-b"
+      />
+      <div @click="createChallengeForm" class="border-b py-1 cursor-pointer flex">
+        <div v-show="currentChallengeId === 'newChallenge'" class="pr-2">{{ '<' }}</div>
+        <span>新增</span>
+      </div>
     </div>
   </div>
 </template>
@@ -86,8 +86,12 @@
       console.debug(error)
     }
   }
-  onMounted(() => {
-    fetchChallengeList()
+  onMounted(async () => {
+    await fetchChallengeList()
+    if(challenges.value) {
+      currentChallengeId.value = challenges.value[0].id
+      currentChallenge.value = challenges.value[0]
+    }
   }) 
 
   const updateCurrentChallenge = (challenge) => {
