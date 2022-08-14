@@ -7,17 +7,22 @@ import {
   setDoc,
   Timestamp,
   query,
-  orderBy
+  orderBy,
   // limit
-  // where,
+  where
 } from "firebase/firestore"
 import { firestoreDB } from "./firebase"
 
-export const queryByCollection = async (collectionName: string) => {
+export const queryByCollection = async (collectionName: string, filter?: any) => {
   // @ts-ignore
   const collectionRef = collection(firestoreDB, collectionName)
-  // const q = query(collectionRef, orderBy("updateDate"))
-  let snapshot = await getDocs(collectionRef)
+  let snapshot
+  if (filter) {
+    const q = query(collectionRef, where(filter.key, "==", filter.value))
+    snapshot = await getDocs(q)
+  } else {
+    snapshot = await getDocs(collectionRef)
+  }
   const docs = Array.from(snapshot.docs).map((doc) => {
     return {
       ...doc.data(),
