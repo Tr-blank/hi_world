@@ -16,9 +16,6 @@
   })
   const emit = defineEmits(['save-challenge', 'delete-challenge'])
   const { form } = toRefs(props)
-  const { fetchModelList, fetchTagList, modelList, tagList } = useChallenge()
-  fetchModelList()
-  fetchTagList()
 
   let formData = ref({})
 
