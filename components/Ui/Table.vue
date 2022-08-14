@@ -30,7 +30,7 @@
     return tdData.value.map((td) => {
       return {
         id: td.id,
-        tdData: thTitle.value.map((th) => td[th.key] ? td[th.key] : null).filter(td => td)
+        tdData: thTitle.value.map((th) => typeof td[th.key] !== 'undefined' ? td[th.key] : null)
       }
     })
   })

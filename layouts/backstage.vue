@@ -35,6 +35,18 @@ const asideLinks = ref([
     key: 'backstage'
   },
   {
+    key: 'user',
+    path: '/backstage/user/property-list',
+    name: '使用者',
+    subLink: [
+      {
+        path: '/backstage/user/property-list',
+        name: '使用者資產清單',
+        key: 'userPropertyList'
+      }
+    ]
+  },
+  {
     key: 'challenge',
     path: '/backstage/challenge/list',
     name: '挑戰',
