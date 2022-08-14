@@ -1,5 +1,5 @@
 <template>
-  <main class="flex">
+  <div class="flex">
     <aside class="h-screen w-60 bg-blue-200 text-center flex flex-col justify-between">
       <header class="p-4">logo</header>
       <nav class="py-10">
@@ -21,7 +21,7 @@
       <footer class="p-4">footer</footer>
     </aside>
     <slot />
-  </main>
+  </div>
 </template>
 
 <script setup>
@@ -41,7 +41,7 @@ const asideLinks = ref([
     subLink: [
       {
         path: '/backstage/challenge/list',
-        name: '官方挑戰',
+        name: '挑戰清單',
         key: 'challengeList'
       },
       {

@@ -17,6 +17,7 @@
         <div>{{ currentTagId }}</div>
         <UiForm
           :form="currentTagData"
+          :is-create-form="isCreateForm"
           @save-form-data="saveTagData"
           @delete-form-data="deleteTag"
         >
@@ -61,7 +62,7 @@
   }
   const currentTagId = ref('')
   const currentTagData = ref({})
-  const isCreateTag = computed(() => currentTagId.value === 'newChallenge')
+  const isCreateForm = computed(() => currentTagId.value === 'newChallenge')
   const viewTagDetail = (tag) => {
     currentTagData.value = tag
     currentTagId.value = tag.id
@@ -76,8 +77,8 @@
   }
   const saveTagData = async () => {
     try {
-      console.log('saveTagData', isCreateTag.value)
-      if (isCreateTag.value) {
+      console.log('saveTagData', isCreateForm.value)
+      if (isCreateForm.value) {
         const { data } = await addChallengeTag(currentTagData.value)
         currentTagId.value = currentTagId.value
         currentTagData.value = currentTagData.value

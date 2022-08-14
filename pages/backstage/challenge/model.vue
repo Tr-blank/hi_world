@@ -17,6 +17,7 @@
         <div>{{ currentModelId }}</div>
         <UiForm
           :form="currentModelData"
+          :is-create-form="isCreateForm"
           @save-form-data="saveModelData"
           @delete-form-data="deleteModel"
         >
@@ -66,7 +67,7 @@
   }
   const currentModelId = ref('')
   const currentModelData = ref({})
-  const isCreateModel = computed(() => currentModelId.value === 'newChallenge')
+  const isCreateForm = computed(() => currentModelId.value === 'newChallenge')
   const viewModelDetail = (model) => {
     currentModelData.value = model
     currentModelId.value = model.id
@@ -81,7 +82,7 @@
   }
   const saveModelData = async () => {
     try {
-      if (isCreateModel.value) {
+      if (isCreateForm.value) {
         const { data } = await addChallengeModel(currentModelData.value)
         currentModelId.value = currentModelId.value
         currentModelData.value = currentModelData.value
