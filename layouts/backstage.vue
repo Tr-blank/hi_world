@@ -67,6 +67,23 @@ const asideLinks = ref([
         key: 'challengeTag'
       }
     ]
+  },
+  {
+    key: 'item',
+    path: '/backstage/item/list',
+    name: '道具',
+    subLink: [
+      {
+        path: '/backstage/item/list',
+        name: '道具清單',
+        key: 'itemList'
+      },
+      {
+        path: '/backstage/item/tag',
+        name: '道具標籤',
+        key: 'itemTag'
+      }
+    ]
   }
 ])
 const allLink = asideLinks.value.reduce((previousValue, currentValue) => {
