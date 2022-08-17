@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <header class="p-4">
-      <h1>道具標籤清單</h1>
+      <h1>商店標籤清單</h1>
     </header>
     <div class="p-4">
       <div class="pb-4">
@@ -11,19 +11,19 @@
         :thTitle="tableTitle"
         :tdData="itemTagList"
         :hasViewDetail="true"
-        @view-item-detail="viewItemDetail"
+        @view-item-detail="viewDetail"
       />
       <div>
         <div>{{ currentId }}</div>
         <UiForm
-          :form="currentItemTagData"
+          :form="currentShopTagData"
           :is-create-form="isCreateForm"
-          @save-form-data="saveItemTagData"
-          @delete-form-data="deleteItemTag"
+          @save-form-data="saveShopTagData"
+          @delete-form-data="deleteTag"
         >
-          <UiText v-model:value="currentItemTagData.key" label="key" title="英文代號" />
-          <UiText v-model:value="currentItemTagData.name" label="name" title="名稱" />
-          <UiText v-model:value="currentItemTagData.note" label="note" title="備註" />
+          <UiText v-model:value="currentShopTagData.key" label="key" title="英文代號" />
+          <UiText v-model:value="currentShopTagData.name" label="name" title="名稱" />
+          <UiText v-model:value="currentShopTagData.note" label="note" title="備註" />
         </UiForm>
       </div>
     </div>
@@ -32,7 +32,7 @@
 
 <script setup>
   import UiTable from '@/components/Ui/Table.vue'
-  import { getItemTagList, addItemTag, delItemTag, updateItemTag } from '@/api/item'
+  import { getShopTagList, addShopTag, delShopTag, updateShopTag } from '@/api/shop'
 
   definePageMeta({
     layout: "backstage",
@@ -56,56 +56,55 @@
     }
   ]
   const itemTagList = ref([])
-  const fetchItemTagList = async () => {
+  const fetchShopTagList = async () => {
     try {
-      const { data } = await getItemTagList()
+      const { data } = await getShopTagList()
       itemTagList.value = data
     } catch (error) {
       console.debug(error)
     }
   }
   const currentId = ref('')
-  const currentItemTagData = ref({})
+  const currentShopTagData = ref({})
   const isCreateForm = computed(() => currentId.value === 'new')
-  const viewItemDetail = (item) => {
-    currentItemTagData.value = item
-    currentId.value = item.id
+  const viewDetail = (shop) => {
+    currentShopTagData.value = shop
+    currentId.value = shop.id
   }
    const createForm = () => {
     currentId.value = 'new'
-    currentItemTagData.value = {
+    currentShopTagData.value = {
       key: '',
       name: '',
       note: ''
     }
   }
-  const saveItemTagData = async () => {
+  const saveShopTagData = async () => {
     try {
       if (isCreateForm.value) {
-        console.log('add', currentItemTagData.value)
-        const { data } = await addItemTag(currentItemTagData.value)
+        const { data } = await addShopTag(currentShopTagData.value)
         currentId.value = currentId.value
-        currentItemTagData.value = currentItemTagData.value
+        currentShopTagData.value = currentShopTagData.value
       } else {
-        await updateItemTag(currentId.value, currentItemTagData.value)
+        await updateShopTag(currentId.value, currentShopTagData.value)
       }
     } catch (error) {
       console.debug(error)
     } finally {
-      fetchItemTagList()
+      fetchShopTagList()
     }
   }
-  const deleteItemTag = async () => {
+  const deleteTag = async () => {
     try {
-      await delItemTag(currentId.value)
+      await delShopTag(currentId.value)
     } catch (error) {
       console.debug(error)
     } finally {
-      fetchItemTagList()
+      fetchShopTagList()
       createForm()
     }
   }
   onMounted(() => {
-    fetchItemTagList()
+    fetchShopTagList()
   })
 </script>
