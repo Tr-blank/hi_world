@@ -52,11 +52,6 @@ const asideLinks = ref([
     name: '挑戰',
     subLink: [
       {
-        path: '/backstage/challenge/list',
-        name: '挑戰清單',
-        key: 'challengeList'
-      },
-      {
         path: '/backstage/challenge/model',
         name: '挑戰模式',
         key: 'challengeModel'
@@ -65,6 +60,11 @@ const asideLinks = ref([
         path: '/backstage/challenge/tag',
         name: '挑戰標籤',
         key: 'challengeTag'
+      },
+      {
+        path: '/backstage/challenge/list',
+        name: '挑戰清單',
+        key: 'challengeList'
       }
     ]
   },
@@ -74,14 +74,31 @@ const asideLinks = ref([
     name: '道具',
     subLink: [
       {
-        path: '/backstage/item/list',
-        name: '道具清單',
-        key: 'itemList'
-      },
-      {
         path: '/backstage/item/tag',
         name: '道具標籤',
         key: 'itemTag'
+      },
+      {
+        path: '/backstage/item/list',
+        name: '道具清單',
+        key: 'itemList'
+      }
+    ]
+  },
+  {
+    key: 'shop',
+    path: '/backstage/shop/list',
+    name: '商店',
+    subLink: [
+      {
+        path: '/backstage/shop/tag',
+        name: '商店標籤',
+        key: 'shopTag'
+      },
+      {
+        path: '/backstage/shop/list',
+        name: '商店清單',
+        key: 'shopList'
       }
     ]
   }
