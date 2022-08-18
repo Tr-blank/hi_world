@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full border border-gray-200 bg-white">
-    <div v-show="currentChallengeId" class="p-6 border-l border-gray-200 w-full">
+    <div v-show="currentChallengeId" class="p-6 border-r border-gray-200 w-full">
       <div class="flex justify-between">
         <span>挑戰內容</span>
         <span class="cursor-pointer inline-block pl-4" @click="closeChallengeDetail">X</span>

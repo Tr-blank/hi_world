@@ -1,3 +1,10 @@
+export const getStorehouseByUserId = (userId) => {
+  return $fetch('http://localhost:3000/api/storehouse/storehouse-detail', {
+    method: 'get',
+    params: { userId }
+  })
+}
+
 export const getStorehouseList = () => {
   return $fetch('http://localhost:3000/api/storehouse/storehouse-list', {
     method: 'get'
