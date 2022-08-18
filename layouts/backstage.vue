@@ -101,6 +101,23 @@ const asideLinks = ref([
         key: 'shopList'
       }
     ]
+  },
+  {
+    key: 'storehouse',
+    path: '/backstage/storehouse/list',
+    name: '倉庫',
+    subLink: [
+      {
+        path: '/backstage/storehouse/tag',
+        name: '倉庫標籤',
+        key: 'storehouseTag'
+      },
+      {
+        path: '/backstage/storehouse/list',
+        name: '倉庫清單',
+        key: 'storehouseList'
+      }
+    ]
   }
 ])
 const allLink = asideLinks.value.reduce((previousValue, currentValue) => {
