@@ -4,6 +4,7 @@
       <header class="p-4"><nuxt-link to="/">logo</nuxt-link></header>
       <nav class="py-10">
         <nuxt-link to="/user" class="block px-4 py-1">挑戰</nuxt-link>
+        <nuxt-link to="/user/shop" class="block px-4 py-1">商店</nuxt-link>
       </nav>
       <footer class="p-4">footer</footer>
     </aside>

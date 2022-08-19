@@ -1,3 +1,10 @@
+export const getShopByKey = (key) => {
+  return $fetch('http://localhost:3000/api/shop/shop-detail', {
+    method: 'get',
+    params: { key }
+  })
+}
+
 export const getShopList = () => {
   return $fetch('http://localhost:3000/api/shop/shop-list', {
     method: 'get'

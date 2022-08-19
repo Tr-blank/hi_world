@@ -9,8 +9,8 @@
       <template v-else>空背包</template>
     </div>
     <div class="flex-[1_1_100%] p-4">
-      <BackpackList
-        :items="backpack.items"
+      <StorehouseList
+        :items="storehouse.items"
         @update-current-item="updateCurrentItem"
         class="border-b"
       />
@@ -23,15 +23,15 @@
 </template>
 
 <script setup>
-  import BackpackList from '@/components/Backpack/List.vue'
+  import StorehouseList from '@/components/Storehouse/List.vue'
   import { getStorehouseByUserId } from '@/api/storehouse'
-  const backpack = ref({})
+  const storehouse = ref({})
   const currentItem = ref({})
-  const fetchUserBackpack = async () => {
+  const fetchUserStorehouse = async () => {
     try {
       const { data } = await getStorehouseByUserId('Rwe8WtiBqmMpn8a7wrAo')
-      backpack.value = data[0]
-      currentItem.value = backpack.value.items[0]
+      storehouse.value = data[0]
+      currentItem.value = storehouse.value.items[0]
     } catch (error) {
       console.debug(error)
     }
@@ -40,6 +40,6 @@
     currentItem.value = item
   }
   onMounted(async () => {
-    await fetchUserBackpack()
+    await fetchUserStorehouse()
   }) 
 </script>

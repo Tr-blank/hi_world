@@ -1,11 +1,11 @@
 <template>
   <main class="p-4">
-    <StorehouseWindow />
+    <ShopWindow />
   </main>
 </template>
 
 <script setup>
-  import StorehouseWindow from "@/components/Storehouse/Window"
+  import ShopWindow from "@/components/Shop/Window"
   definePageMeta({
     layout: "user-center",
   })
