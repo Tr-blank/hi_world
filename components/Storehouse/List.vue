@@ -4,8 +4,8 @@
     <ul class="w-full">
       <li class="flex py-1 px-2 border-b border-gray-200">
         <span class="w-3/5">名稱</span>
+        <span class="w-1/5">單價</span>
         <span class="w-1/5">數量</span>
-        <span class="w-1/5">價格</span>
       </li>
       <li
         v-for="item in items"
@@ -18,8 +18,8 @@
           <i class="w-4 h-4 inline-block bg-gray-400 mr-2 align-middle" />
           <span class="align-middle">{{ item.name }}</span>
         </div>
-        <span class="w-1/5">{{ item.stock }}</span>
         <span class="w-1/5">{{ item.price }}</span>
+        <span class="w-1/5">{{ item.stock }}</span>
       </li>
     </ul>
   </div>
@@ -29,12 +29,12 @@
     items: Array,
     title: String
   })
-  const emit = defineEmits(['update-current-item'])
+  const emit = defineEmits(['update-current-item', 'select-item'])
   const updateCurrentItem = (item) => {
     emit('update-current-item', item)
   }
   const selectItem = (item) => {
-    console.log(item)
+    emit('select-item', item)
   }
 
 </script>
