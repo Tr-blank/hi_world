@@ -12,7 +12,7 @@
           <div>{{ content }}</div>
           <slot name="content"/>
         </main>
-        <footer class="p-4">
+        <footer class="p-4 pt-0">
           <button type="button" class="border px-4 py-1 rounded mr-4" @click="confirm">確認</button>
           <button type="button" class="border px-4 py-1 rounded mr-4" @click="cancel">取消</button>
           <slot name="footer"/>

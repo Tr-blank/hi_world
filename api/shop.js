@@ -1,3 +1,10 @@
+export const simplePayment = (body) => {
+  return $fetch('http://localhost:3000/api/payment/simple-payment', {
+    method: 'post',
+    body
+  })
+}
+
 export const getShopByKey = (key) => {
   return $fetch('http://localhost:3000/api/shop/shop-detail', {
     method: 'get',

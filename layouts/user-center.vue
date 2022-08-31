@@ -36,19 +36,8 @@
 </template>
 
 <script setup>
-  import { getUserPropertyByAccount } from '@/api/user'
-  const localTestAccount = 'tiya12345'
-  const userProperty = ref({})
-  const fetchUserProperty = async () => {
-    try {
-      const { data } = await getUserPropertyByAccount(localTestAccount)
-      userProperty.value = data[0]
-    } catch (error) {
-      console.debug(error)
-    }
-  }
-  onMounted(async () => {
-    await fetchUserProperty()
-  })
-
+  import useStore from '@/store'
+  const store = useStore()
+  const userProperty = computed(() => store.getUserInfo)
+  store.setUserInfo()
 </script>

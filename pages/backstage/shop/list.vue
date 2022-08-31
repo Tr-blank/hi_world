@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full">
-    <header class="p-4">
-      <h1>商店清單</h1>
-    </header>
-    <div class="p-4">
+  <main class="flex w-full">
+    <div class="p-4 w-full">
+      <header class="py-4">
+        <h1>商店清單</h1>
+      </header>
       <div class="pb-4">
         <button type="button" class="border px-4 py-1 rounded" @click="createForm">新增</button>
       </div>
@@ -13,26 +13,54 @@
         :hasViewDetail="true"
         @view-item-detail="viewDetail"
       />
-      <div>
-        <div>{{ currentId }}</div>
-        <UiForm
-          :form="currentShopData"
-          :is-create-form="isCreateForm"
-          @save-form-data="saveShopData"
-          @delete-form-data="deleteShop"
-        >
-          <UiText v-model:value="currentShopData.key" label="key" title="英文代號" />
-          <UiText v-model:value="currentShopData.name" label="name" title="名稱" />
-          <div class="pb-2">
-            <span class="block">標籤</span>
-            <input type="text" v-model="currentShopData.tags" class="block px-4 py-1 border border-gray-500 rounded" />
-            <div>{{ tagList.map((tag) => tag.name) }}</div>
-          </div>
-          <UiText v-model:value="currentShopData.price" label="price" title="價格" />
-        </UiForm>
-      </div>
     </div>
-  </div>
+    <div v-show="currentId" class="w-[1024px] border-l p-4">
+      <div>{{ currentId }}</div>
+      <UiForm
+        :form="currentShopData"
+        :is-create-form="isCreateForm"
+        @save-form-data="saveShopData"
+        @delete-form-data="deleteShop"
+      >
+        <UiText v-model:value="currentShopData.key" label="key" title="英文代號" />
+        <UiText v-model:value="currentShopData.name" label="name" title="名稱" />
+        <div class="pb-2">
+          <span class="block">標籤</span>
+          <input type="text" v-model="currentShopData.tags" class="block px-4 py-1 border border-gray-500 rounded" />
+          <div>{{ tagList.map((tag) => tag.name) }}</div>
+        </div>
+        <UiText v-model:value="currentShopData.manage" label="manage" title="管理" />
+        <div class="border my-4">
+          <dl v-for="item in currentShopData.items" :key="item.id" class="border-b p-4">
+            <div class="flex">
+              <dt class="pr-4 font-bold">名稱</dt>
+              <dd>{{ item.name }}</dd>
+            </div>
+            <div class="flex">
+              <dt class="pr-4 font-bold">編號</dt>
+              <dd>{{ item.id }}</dd>
+            </div>
+            <div class="flex">
+              <dt class="pr-4 font-bold">代號</dt>
+              <dd>{{ item.key }}</dd>
+            </div>
+            <div class="flex">
+              <dt class="pr-4 font-bold">單價</dt>
+              <dd>{{ item.price }}</dd>
+            </div>
+            <div class="flex">
+              <dt class="pr-4 font-bold">庫存</dt>
+              <dd>{{ item.stock }}</dd>
+            </div>
+            <div class="flex">
+              <dt class="pr-4 font-bold">交易狀態</dt>
+              <dd>{{ item.transactionStatus }}</dd>
+            </div>
+          </dl>
+        </div>
+      </UiForm>
+    </div>
+  </main>
 </template>
 
 <script setup>
@@ -57,11 +85,6 @@
     {
       key: 'name',
       title: '名稱',
-      align: 'left'
-    },
-    {
-      key: 'user',
-      title: '使用者',
       align: 'left'
     }
   ]
