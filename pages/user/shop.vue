@@ -1,11 +1,11 @@
 <template>
   <main class="p-4">
-    <ChallengeWindow /> 
+    <ShopWindow />
   </main>
 </template>
 
 <script setup>
-  import ChallengeWindow from "@/components/Challenge/Window"
+  import ShopWindow from "@/components/Shop/Window"
   definePageMeta({
     layout: "user-center",
   })

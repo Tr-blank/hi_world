@@ -1,0 +1,12 @@
+import { useQuery } from 'h3'
+import { del } from "../../lib/firestore"
+
+export default defineEventHandler (async (event) => {
+  try {
+    const { id } = useQuery(event.req)
+    await del('challenge', id)
+    return { status: 200 }
+  } catch (error) {
+    return { status: 400, message: error.message, error }
+  }
+})
