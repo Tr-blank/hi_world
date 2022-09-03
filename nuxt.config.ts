@@ -2,7 +2,13 @@ import { defineNuxtConfig } from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-css: [
+  runtimeConfig: {
+    public: {
+      webBaseURL: process.env.Web_BASE_URL,
+      apiBaseUrl: process.env.API_BASE_URL
+    }
+  },
+  css: [
     '@/assets/css/tailwind.css'
     // '@/assets/stylus/main.styl'
   ],

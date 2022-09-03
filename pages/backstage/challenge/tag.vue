@@ -33,7 +33,7 @@
   import UiTable from '@/components/Ui/Table.vue'
   import UiForm from '@/components/Ui/Form.vue'
   import UiText from '@/components/Ui/Text.vue'
-  import { getChallengeTagList, addChallengeTag, delChallengeTag, updateChallengeTag } from '@/api/challenge'
+  import { challenge } from '@/composables/useApi'
 
   definePageMeta({
     layout: "backstage",
@@ -54,7 +54,7 @@
   const tagList = ref([])
   const fetchChallengeTagList = async () => {
     try {
-      const { data } = await getChallengeTagList()
+      const { data } = await challenge.getChallengeTagList()
       tagList.value = data
     } catch (error) {
       console.debug(error)
@@ -79,11 +79,11 @@
     try {
       console.log('saveTagData', isCreateForm.value)
       if (isCreateForm.value) {
-        const { data } = await addChallengeTag(currentTagData.value)
+        const { data } = await challenge.addChallengeTag(currentTagData.value)
         currentTagId.value = currentTagId.value
         currentTagData.value = currentTagData.value
       } else {
-        await updateChallengeTag(currentTagId.value, currentTagData.value)
+        await challenge.updateChallengeTag(currentTagId.value, currentTagData.value)
       }
     } catch (error) {
       console.debug(error)
@@ -93,7 +93,7 @@
   }
   const deleteTag = async () => {
     try {
-      await delChallengeTag(currentTagId.value)
+      await challenge.delChallengeTag(currentTagId.value)
     } catch (error) {
       console.debug(error)
     } finally {

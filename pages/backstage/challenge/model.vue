@@ -34,7 +34,7 @@
   import UiTable from '@/components/Ui/Table.vue'
   import UiForm from '@/components/Ui/Form.vue'
   import UiText from '@/components/Ui/Text.vue'
-  import { getChallengeModelList, addChallengeModel, delChallengeModel, updateChallengeModel } from '@/api/challenge'
+  import { challenge } from '@/composables/useApi'
 
   definePageMeta({
     layout: "backstage",
@@ -59,7 +59,7 @@
   const modelData = ref([])
   const fetchChallengeModelList = async () => {
     try {
-      const { data } = await getChallengeModelList()
+      const { data } = await challenge.getChallengeModelList()
       modelData.value = data
     } catch (error) {
       console.debug(error)
@@ -83,11 +83,11 @@
   const saveModelData = async () => {
     try {
       if (isCreateForm.value) {
-        const { data } = await addChallengeModel(currentModelData.value)
+        const { data } = await challenge.addChallengeModel(currentModelData.value)
         currentModelId.value = currentModelId.value
         currentModelData.value = currentModelData.value
       } else {
-        await updateChallengeModel(currentModelId.value, currentModelData.value)
+        await challenge.updateChallengeModel(currentModelId.value, currentModelData.value)
       }
     } catch (error) {
       console.debug(error)
@@ -97,7 +97,7 @@
   }
   const deleteModel = async () => {
     try {
-      await delChallengeModel(currentModelId.value)
+      await challenge.delChallengeModel(currentModelId.value)
     } catch (error) {
       console.debug(error)
     } finally {
