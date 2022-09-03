@@ -32,7 +32,7 @@
 
 <script setup>
   import { ref, computed } from 'vue'
-  import { getChallengeList, addChallenge, delChallenge, updateChallenge } from '@/api/challenge'
+  import { challenge } from '@/composables/useApi'
   import ChallengeList from '@/components/Challenge/List.vue'
   import ChallengeDetail from '@/components/Challenge/Detail.vue'
   const currentChallengeId = ref(null)
@@ -53,10 +53,10 @@
   const saveChallengeData = async (data) => {
     try {
       if (isCreateChallenge.value) {
-        const { data: { id } } = await addChallenge(data)
+        const { data: { id } } = await challenge.addChallenge(data)
         currentChallengeId.value = id
       } else {
-        await updateChallenge(currentChallengeId.value, data)
+        await challenge.updateChallenge(currentChallengeId.value, data)
       }
     } catch (error) {
       console.debug(error)
@@ -66,7 +66,7 @@
   }
   const deleteChallenge = async (id) => {
     try {
-      await delChallenge(id)
+      await challenge.delChallenge(id)
     } catch (error) {
       console.debug(error)
     } finally {
@@ -80,7 +80,7 @@
   }
   const fetchChallengeList = async () => {
     try {
-      const { data } = await getChallengeList()
+      const { data } = await challenge.getChallengeList()
       challenges.value = data
     } catch (error) {
       console.debug(error)

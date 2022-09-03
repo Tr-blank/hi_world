@@ -12,7 +12,7 @@
 </template>
 <script setup>
   import { reactive, onMounted } from 'vue'
-  // import { getChallengeList } from '@/api/challenge'
+  // import { getChallengeList } from '@/composables/useApi'
   const props = defineProps({
     challenges: Array,
     currentChallengeId: String

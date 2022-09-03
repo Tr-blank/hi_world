@@ -1,11 +1,11 @@
-import { getChallengeModelList, getChallengeTagList } from '@/api/challenge'
+import { challenge } from '@/composables/useApi'
 
 export default function () {
   const modelList = ref([])
   const tagList = ref([])
   const fetchModelList = async () => {
     try {
-      const { data } = await getChallengeModelList()
+      const { data } = await challenge.getChallengeModelList()
       modelList.value = data
     } catch (error) {
       console.debug(error)
@@ -14,7 +14,7 @@ export default function () {
   }
   const fetchTagList = async () => {
     try {
-      const { data } = await getChallengeTagList()
+      const { data } = await challenge.getChallengeTagList()
       tagList.value = data
     } catch (error) {
       console.debug(error)

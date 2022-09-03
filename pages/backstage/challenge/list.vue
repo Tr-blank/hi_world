@@ -29,7 +29,7 @@
 <script setup>
   import UiTable from '@/components/Ui/Table.vue'
   import ChallengeForm from '@/components/Challenge/Form.vue'
-  import { getChallengeList, addChallenge, delChallenge, updateChallenge } from '@/api/challenge'
+  import { challenge } from '@/composables/useApi'
 
   definePageMeta({
     layout: "backstage",
@@ -55,7 +55,7 @@
   const challengeList = ref([])
   const fetchChallengeList = async () => {
     try {
-      const { data } = await getChallengeList()
+      const { data } = await challenge.getChallengeList()
       challengeList.value = data
     } catch (error) {
       console.debug(error)
@@ -83,11 +83,11 @@
     try {
       if (isCreateForm.value) {
         console.log('add', currentChallengeData.value)
-        const { data } = await addChallenge(currentChallengeData.value)
+        const { data } = await challenge.addChallenge(currentChallengeData.value)
         currentChallengeId.value = currentChallengeId.value
         currentChallengeData.value = currentChallengeData.value
       } else {
-        await updateChallenge(currentChallengeId.value, currentChallengeData.value)
+        await challenge.updateChallenge(currentChallengeId.value, currentChallengeData.value)
       }
     } catch (error) {
       console.debug(error)
@@ -97,7 +97,7 @@
   }
   const deleteChallenge = async () => {
     try {
-      await delChallenge(currentChallengeId.value)
+      await challenge.delChallenge(currentChallengeId.value)
     } catch (error) {
       console.debug(error)
     } finally {
